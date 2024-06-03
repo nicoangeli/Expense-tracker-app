@@ -1,0 +1,198 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+  
+  h1, h2 {
+    text-align: center;
+  }
+  
+  .input-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .input-section label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .input-section input[type="number"], .input-section input[type="date"] {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .input-section button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .expenses-list {
+    margin: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  tfoot td {
+    font-weight: bold;
+  }
+  
+  .delete-btn {
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Stile per il div con la classe App */
+  .App {
+    border: 2px solid green; /* Bordo verde */
+    border-radius: 15px; /* Bordo stondato */
+    padding: 20px; /* Spazio interno */
+    width: 100%;
+    margin: 110px;
+    margin-bottom: 800px;
+    position: relative;
+  }
+  
+  .budget-container {
+    border: 2px solid green; /* Bordo verde */
+    border-radius: 15px; /* Bordo stondato */
+    padding: 20px; /* Spazio interno */
+    margin-bottom: 20px;
+  }
+  
+  .budget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .budget-header h2 {
+    margin: 0; /* Rimuove il margine predefinito del titolo */
+  }
+  
+  .edit-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .edit-container input {
+    flex-grow: 1; /* L'input occupa tutto lo spazio disponibile */
+    margin-right: 10px; /* Spazio tra l'input e il pulsante Save */
+  }
+  
+  #save-button {
+    margin-left: auto; /* Sposta il pulsante Save a destra */
+  }
+  
+  #edit-button {
+    margin-left: auto; /* Sposta il pulsante Edit a destra */
+  }
+  
+#home-button-expenses{
+    height: 38px;
+    width: 150px;
+    margin-left: 410px;
+    background-color: #0B7EF0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge l'ombra ai bottoni */
+    color: white;
+}
+#home-button-expenses:hover{
+    border: 1px solid green;
+    transform: scale(1.05);
+    background-color: rgb(28, 202, 83);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}  
+
+
+#search-button-expenses{
+  height: 38px;
+  width: 100px;
+  margin-left: 100px;
+  background-color: #0B7EF0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge l'ombra ai bottoni */
+  color: white;
+}
+#search-button-expenses:hover{
+  border: 1px solid green;
+  transform: scale(1.05);
+  background-color: rgb(28, 202, 83);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}
+
+.filters{
+  border-radius: 17px;
+  border: 2px solid green;
+  margin-top: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge l'ombra ai bottoni */
+}
+
+.filters-button{
+  margin: 5px;
+  height: 30px;
+  width: 100px;
+  padding: 2px;
+  background-color: #0B7EF0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge l'ombra ai bottoni */
+  color: white;
+}
+
+.filters-button:hover{
+  border: 1px solid green;
+  transform: scale(1.05);
+  background-color: rgb(28, 202, 83);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}
+
+.filters-button:active {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.filters-button.selected{
+  /* border: 1px solid green; */
+  background-color: rgb(28, 202, 83);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Ombra più evidente quando è cliccato */
+  z-index: 10; /* Porta il bottone in avanti */
+}
+
+#download-excel-button{
+  height: 38px;
+  width: 100px;
+  margin-left: 10px;
+  background-color: #0B7EF0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge l'ombra ai bottoni */
+  color: white;
+}
+#download-excel-button:hover{
+  border: 1px solid green;
+  transform: scale(1.05);
+  background-color: rgb(28, 202, 83);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}

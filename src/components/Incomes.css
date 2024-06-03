@@ -1,0 +1,70 @@
+#home-button-incomes{
+    height: 38px;
+    width: 150px;
+    margin-left: 350px;
+    background-color: #0B7EF0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge l'ombra ai bottoni */
+    color: white;
+}
+#home-button-incomes:hover{
+    border: 1px solid green;
+    transform: scale(1.05);
+    background-color: rgb(28, 202, 83);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}
+label{
+    font-weight: bold;
+}
+
+select{
+    margin-left: 10px;
+}
+
+input{
+    margin-left: 10px;
+}
+
+
+
+#search-button{
+    height: 38px;
+    width: 100px;
+    margin-left: 200px;
+    background-color: #0B7EF0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge l'ombra ai bottoni */
+    color: white;
+}
+#search-button:hover{
+    border: 1px solid green;
+    transform: scale(1.05);
+    background-color: rgb(28, 202, 83);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}
+
+.filter-container{
+    border-radius: 17px;
+    border: 2px solid green;
+    margin-top: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge l'ombra ai bottoni */
+}
+
+h2{
+    margin-top: 5px;
+}
+
+
+#download-excel-button{
+    height: 38px;
+    width: 100px;
+    margin-left: 10px;
+    background-color: #0B7EF0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge l'ombra ai bottoni */
+    color: white;
+}
+#download-excel-button:hover{
+    border: 1px solid green;
+    transform: scale(1.05);
+    background-color: rgb(28, 202, 83);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}
