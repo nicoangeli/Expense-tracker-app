@@ -23,4 +23,3 @@ const googleProvider = new GoogleAuthProvider();
 
 
 export { auth, db, googleProvider };
-

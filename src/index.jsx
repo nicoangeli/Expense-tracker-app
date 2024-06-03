@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './index.css'; // Importa il foglio di stile globale
+import './index.css';
 
-const rootElement = document.getElementById('root');
-const root = ReactDOM.createRoot(rootElement);
+// // Registra il Service Worker
+// if ('serviceWorker' in navigator) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/serviceWorker.js')
+//       .then((registration) => {
+//         console.log('Service Worker registered:', registration.scope);
+//       })
+//       .catch((error) => {
+//         console.error('Service Worker registration failed:', error);
+//       });
+//   });
+// }
 
-root.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
