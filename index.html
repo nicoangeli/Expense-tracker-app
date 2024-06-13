@@ -2,12 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/dollar.png" />
+    <link rel="icon" type="image/png" href="./src/assets/dollar.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense Tracker App</title>
     <!-- Link per il manifest -->
-    <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <!-- <script id="vite-plugin-pwa: register-sw" src="/dist/registerSW.js"></script> -->
+    <!-- <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+              .then((registration) => {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+              }, (error) => {
+                console.log('ServiceWorker registration failed: ', error);
+              });
+          });
+        }
+      </script> -->
 </head>
 <body>
     <div id="root"></div>

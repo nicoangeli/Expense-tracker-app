@@ -3,22 +3,26 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 
-// // Registra il Service Worker
-// if ('serviceWorker' in navigator) {
-//   window.addEventListener('load', () => {
-//     navigator.serviceWorker.register('/serviceWorker.js')
-//       .then((registration) => {
-//         console.log('Service Worker registered:', registration.scope);
-//       })
-//       .catch((error) => {
-//         console.error('Service Worker registration failed:', error);
-//       });
-//   });
-// }
+// Registrazione del Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+    .then((registration) => {
+      console.log('Service Worker registrato con successo!');
+    })
+    .catch((error) => {
+      console.error('Errore nella registrazione del Service Worker:', error);
+    });
+  });
+}
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
+
+//serviceWorkerRegistration.register();
+
 
