@@ -1,20 +1,35 @@
+// Importa React e i suoi hook useState e useEffect
 import React, { useState, useEffect } from 'react';
+// Importa le funzioni doc, getDoc e setDoc da Firebase Firestore
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+// Importa useNavigate da React Router per la navigazione tra pagine
 import { useNavigate } from 'react-router-dom';
+// Importa il database e l'autenticazione da Firebase
 import { auth, db } from './firebase';
 
+//importo lo stile CSS del componente Budget
 import './Budget.css'
 
+//Definisco il componente Budget, per la gestione e visualizzazione del Budget e RemainingBudget
 const Budget = () => {
+  //Definizione degli stati utilizzati nel componente
+  // Stato per il budget, inizialmente ''
   const [budget, setBudget] = useState('');
+  // Stato per il totale delle spese, inizialmente a 0
   const [totalAmount, setTotalAmount] = useState(0);
+  // Stato per il totale delle entrate
   const [totalIncome, setTotalIncome] = useState(0);
+  // Stato per il Budget rimanente inizialmente nullo
   const [remainingBudget, setRemainingBudget] = useState(null);
+  // Stato per il caricamento
   const [loading, setLoading] = useState(true);
+  // Stato per la modalità di modifica del budget (edit)
   const [editMode, setEditMode] = useState(false);
 
+  // Hook per la navigazione
   const navigate = useNavigate();
 
+  // useEffect per recuperare i dati dell'utente da Firestore al montaggio del componente
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -37,18 +52,23 @@ const Budget = () => {
       } catch (error) {
         console.error('Errore durante il recupero dei dati da Firestore:', error);
       }
+      // Imposta lo stato del caricamento a false, per dire che i dati sono stati caricati
       setLoading(false);
     };
 
     fetchData();
 
+    // Imposta un listener per i cambiamenti dello stato di autenticazione
     const unsubscribe = auth.onAuthStateChanged((user) => {
       fetchData();
     });
 
+    // Cleanup del listener al dismount del componente
     return () => unsubscribe();
   }, []);
 
+
+  // useEffect per salvare i dati su Firestore ogni volta che budget, totalAmount o totalIncome cambiano
   useEffect(() => {
     if (!loading) {
       const saveData = async () => {
@@ -83,18 +103,25 @@ const Budget = () => {
     }
   };
 
+  // Funzione per gestire il clic sul pulsante di modifica
   const handleEditClick = () => {
+    // Imposta lo stato di modifica a true, attiva la modalità di modifica
     setEditMode(true);
   };
 
+  // Funzione per gestire il clic sul pulsante di salvataggio
   const handleSaveClick = () => {
+    // Imposta lo stato di modifica a false, disattiva la modalità di modifica, scompare l'input dell'edit
     setEditMode(false);
   };
 
+  // Funzione per gestire il clic sul pulsante di ritorno alla home
   const handleHomeClick = () => {
+    // Se premuto ritorna alla homepage
     navigate('/homepage');
   }
 
+  // Se è in corso il caricamento, visualizza un messaggio di caricamento
   if (loading) {
     return <div>Loading...</div>;
   }

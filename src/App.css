@@ -1,8 +1,10 @@
+/* applico  il carattere Arial a tutto il body del documento html e metto il margin a 0*/
 body {
   font-family: Arial, sans-serif;
   margin: 0;
 }
 
+/* centra il testo degli elementi h1 e h2 */
 h1, h2 {
   text-align: center;
 }

@@ -1,32 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import { signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth'; // Import della funzione di logout da firebase
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from './firebase';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
-import { startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, endOfYear } from 'date-fns';
+// import DatePicker from 'react-datepicker';
+// import "react-datepicker/dist/react-datepicker.css"; // Stili predefiniti per il datapicker
+import { startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, endOfYear } from 'date-fns'; // Funzioni di date-fns per calcolare inizio e fine periodo
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faDownload } from '@fortawesome/free-solid-svg-icons';
-import * as XLSX from 'xlsx';  // Importa il pacchetto xlsx
+import * as XLSX from 'xlsx';  // Importa il pacchetto xlsx, per permettere la funzione per il download delle spese come un file excel
 
+// Import dei componenti e del file CSS
 import ExpenseForm from './ExpenseForm';
 import ExpenseList from './ExpenseList';
 import './Expenses.css';
 
+// Componente Expenses
 const Expenses = () => {
+  // Stati per gestire le spese
+  // Array per le spese
   const [expenses, setExpenses] = useState([]);
+  // Array di spese filtrate
   const [filteredExpenses, setFilteredExpenses] = useState([]);
+  // Stato dell'importo totale delle spese
   const [totalAmount, setTotalAmount] = useState(0);
+  // Stato dell'importo totale delle spese filtrate
   const [filteredTotalAmount, setFilteredTotalAmount] = useState(0);
+  // Budget dell'utente
   const [budget, setBudget] = useState('');
+  // Stato per il caricamento
   const [loading, setLoading] = useState(true);
+  // Tipo di filtro per periodo (giorno, settimana, mese, anno), default visualizzo le spese annuali
   const [filterType, setFilterType] = useState('year');
+  // Data selezionata per il filtro per data
   const [selectedDate, setSelectedDate] = useState(new Date());
+  // Titolo di ricerca per il filtro per titolo
   const [searchTitle, setSearchTitle] = useState('');
+  // Mostra/nasconde l'input per la ricerca per titolo
   const [showTitleSearch, setShowTitleSearch] = useState(false);
+  // Hook per la navigazione tra le pagine
   const navigate = useNavigate();
 
+  // useEffect per caricare i dati dell'utente da Firestore al caricamento della pagina
   useEffect(() => {
     const fetchData = async () => {
       const user = auth.currentUser;
@@ -36,27 +51,30 @@ const Expenses = () => {
         if (docSnap.exists()) {
           const data = docSnap.data();
           console.log("User data fetched: ", data);
+          // Aggiorna gli stati con i dati recuperati da Firestore
           setBudget(data.budget || '');
           setTotalAmount(data.totalAmount || 0);
           setExpenses(data.expenses || []);
           setFilteredExpenses(data.expenses || []);
+          // Calcola l'importo totale delle spese
           setFilteredTotalAmount(data.expenses.reduce((total, expense) => total + expense.amount, 0));
         } else {
           console.log("No such document!");
         }
       }
-      setLoading(false);
+      setLoading(false); // Quando i dati vengono recuperati imposta il flag di carimento a false, per dire che non sta più caricando
     };
 
-    fetchData();
+    fetchData(); // Chiama la funzione per caricare i dati
 
     const unsubscribe = auth.onAuthStateChanged((user) => {
       fetchData();
     });
 
-    return () => unsubscribe();
-  }, []);
+    return () => unsubscribe(); // Pulisce la sottoscrizione all'uscita dal componente
+  }, []); // Eseguito solo al montaggio del componente una volta
 
+  // useEffect per salvare i dati su Firestore quando budget, totalAmount o expenses cambiano
   useEffect(() => {
     if (!loading) {
       const saveData = async () => {
@@ -71,18 +89,21 @@ const Expenses = () => {
           console.log("User data saved: ", { budget, totalAmount, expenses });
         }
       };
-      saveData();
+      saveData(); // Chiama la funzione per salvare i dati
     }
   }, [budget, totalAmount, expenses, loading]);
 
+  // useEffect per filtrare le spese in base alla data selezionata, al tipo di filtro e alle spese
   useEffect(() => {
-    filterExpensesByDate();
+    filterExpensesByDate(); // Chiama la funzione per filtrare le spese per data
   }, [expenses, filterType, selectedDate]);
 
+  // useEffect per filtrare le spese per titolo quando il titolo di ricerca cambia
   useEffect(() => {
-    filterExpensesByTitle();
+    filterExpensesByTitle(); // Chiama la funzione per filtrare le spese per titolo
   }, [searchTitle]);
 
+  // Funzione per inviare notifiche desktop
   const sendNotification = (title, options) => {
     if (!("Notification" in window)) {
       alert("This browser does not support desktop notification");
@@ -97,12 +118,14 @@ const Expenses = () => {
     }
   };
 
+  // Funzione per aggiungere una nuova spesa
   const addExpense = (expense) => {
     const newExpenses = [...expenses, expense];
     const newTotalAmount = totalAmount + expense.amount;
-    setExpenses(newExpenses);
-    setTotalAmount(newTotalAmount);
+    setExpenses(newExpenses); // Aggiorna l'array di spese
+    setTotalAmount(newTotalAmount); // Aggiorna l'importo totale
 
+    // Invia una notifica desktop per la nuova spesa aggiunta
     sendNotification("Nuova Spesa Aggiunta", {
       lang: "en",
       body: `Hai aggiunto una nuova spesa di ${expense.amount} $ con il titolo "${expense.title}".`,
@@ -110,19 +133,21 @@ const Expenses = () => {
       vibrate: [200, 100, 200],
     });
 
-    updateFirestore(newExpenses, newTotalAmount);
+    updateFirestore(newExpenses, newTotalAmount); // Aggiorna Firestore con i nuovi dati
   };
 
+  // Funzione per eliminare una spesa
   const deleteExpense = (index) => {
     const expense = expenses[index];
     const newExpenses = expenses.filter((_, i) => i !== index);
     const newTotalAmount = totalAmount - expense.amount;
-    setExpenses(newExpenses);
-    setTotalAmount(newTotalAmount);
+    setExpenses(newExpenses); // Aggiorna l'array di spese
+    setTotalAmount(newTotalAmount); // Aggiorna l'importo totale
 
-    updateFirestore(newExpenses, newTotalAmount);
+    updateFirestore(newExpenses, newTotalAmount); // Aggiorna Firestore con i nuovi dati
   };
 
+  // Funzione per aggiornare Firestore con le spese e l'importo totale aggiornati
   const updateFirestore = async (expenses, totalAmount) => {
     const user = auth.currentUser;
     if (user) {
@@ -136,39 +161,46 @@ const Expenses = () => {
     }
   };
 
-  const handleSetBudget = (value) => {
-    setBudget(value);
-    updateFirestore(expenses, totalAmount); // Update Firestore when budget changes
-  };
+  // const handleSetBudget = (value) => {
+  //   setBudget(value);
+  //   updateFirestore(expenses, totalAmount); // Update Firestore when budget changes
+  // };
 
-  const handleClick = () => {
-    signOut(auth).then(() => {
-      console.log("User signed out");
-      navigate('/');
-    }).catch((error) => {
-      console.error("Error signing out: ", error);
-    });
-  };
+  // const handleClick = () => {
+  //   signOut(auth).then(() => {
+  //     console.log("User signed out");
+  //     navigate('/');
+  //   }).catch((error) => {
+  //     console.error("Error signing out: ", error);
+  //   });
+  // };
 
+  // Gestione click bottone homepage
   const handleHomeClick = () => {
     navigate('/homepage');
   }
 
+  // Gestore per cambiare il tipo di filtro per periodo (giorno, settimana, mese, anno)
   const handleFilterChange = (type) => {
-    setFilterType(type);
+    setFilterType(type); // Imposta il nuovo tipo di filtro
   }
 
+  // Gestore per gestire il click sul pulsante di ricerca per titolo
   const handleSearchClick = () => {
+    // Toggle della visibilità della barra di ricerca per il titolo delle spese
     setShowTitleSearch(!showTitleSearch);
     if (showTitleSearch) {
+      // Se la barra di ricerca è attiva, resetta il campo di ricerca
       setSearchTitle('');
     }
   }
 
+  // Funzione per filtrare le spese in base alla data
   const filterExpensesByDate = () => {
     let startDate, endDate;
     const currentDate = selectedDate;
 
+    // Switch per determinare la data di inizio e fine in base al tipo di filtro selezionato
     switch (filterType) {
       case 'day':
         startDate = startOfDay(currentDate);
@@ -192,24 +224,30 @@ const Expenses = () => {
         break;
     }
 
+    // Filtra le spese in base alla data
     const filteredByDate = expenses.filter(expense => {
       const expenseDate = new Date(expense.date);
       return expenseDate >= startDate && expenseDate <= endDate;
     });
 
+    // Imposta le spese filtrate e il totale delle spese filtrate, per la visualizzazione
     setFilteredExpenses(filteredByDate);
     setFilteredTotalAmount(filteredByDate.reduce((total, expense) => total + expense.amount, 0));
   };
 
+  // Funzione per filtare le spese per titolo
   const filterExpensesByTitle = () => {
+    // Filtra le spese per titolo, ignorando maiuscole/minuscole
     const filteredByTitle = searchTitle 
       ? expenses.filter(expense => expense.title.toLowerCase().includes(searchTitle.toLowerCase()))
       : expenses;
 
+    // Imposta le spese filtrate e il totale delle spese filtrate, per la visualizzazione
     setFilteredExpenses(filteredByTitle);
     setFilteredTotalAmount(filteredByTitle.reduce((total, expense) => total + expense.amount, 0));
   };
 
+  // Se il caricamento è in corso, mostra "Loading..."
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -225,17 +263,22 @@ const Expenses = () => {
   return (
     <div className="expense-div">
       <h1>Expenses</h1>
+      {/* Componente per aggiungere una nuova spesa */}
       <ExpenseForm addExpense={addExpense} />
       {/* <DatePicker selected={selectedDate} onChange={date => setSelectedDate(date)} /> */}
+      {/* Div per selezionare una data */}
       <div className="filters">
         <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
+        {/* Pulsanti per filtrare le spese per giorno, settimana, mese, anno */}
         <button className={`filters-button ${filterType === 'day' ? 'selected' : ''}`} onClick={() => handleFilterChange('day')}>Giorno</button>
         <button className={`filters-button ${filterType === 'week' ? 'selected' : ''}`} onClick={() => handleFilterChange('week')}>Settimana</button>
         <button className={`filters-button ${filterType === 'month' ? 'selected' : ''}`} onClick={() => handleFilterChange('month')}>Mese</button>
         <button className={`filters-button ${filterType === 'year' ? 'selected' : ''}`} onClick={() => handleFilterChange('year')}>Anno</button>
+        {/* Pulsante per attivare/disattivare la ricerca per titolo */}
         <button id="search-button-expenses" onClick={handleSearchClick}>
           <FontAwesomeIcon icon={faSearch} />
         </button>
+        {/* Input per cercare le spese per titolo */}
         {showTitleSearch && (
           <input
             type="text"
@@ -245,11 +288,15 @@ const Expenses = () => {
           />
         )}
       </div>
+      {/* Lista delle spese filtrate */}
       <ExpenseList expenses={filteredExpenses} deleteExpense={deleteExpense} />
       <div className="total">
+        {/* Totale delle spese filtrate */}
         <h2>Total Amount: {filteredTotalAmount} $</h2>
       </div>
+      {/* Pulsante per tornare alla home */}
       <button id="home-button-expenses" onClick={handleHomeClick}>Home</button>
+      {/* Pulsante per scaricare le spese in formato Excel */}
       <button id="download-excel-button" onClick={downloadExcel}><FontAwesomeIcon icon={faDownload} /></button>
     </div>
   );

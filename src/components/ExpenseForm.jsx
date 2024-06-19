@@ -3,11 +3,12 @@ import React, { useState } from 'react'; //useState per gestire lo stato locale 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
+//import del componente CSS di ExpenseForm
 import './ExpenseForm.css'
 
-//Componente ExpenseForm
-const ExpenseForm = ({ addExpense }) => { //Prende una funzione per aggiungere una nuova spesa alla lista
-  //Inizializzazione degli stati locali
+//Componente ExpenseForm, a cui viene passata come proprietà addExpense dal componente genitore Expenses che utilizza ExpenseForm
+const ExpenseForm = ({ addExpense }) => { //Prende una funzione per aggiungere una nuova spesa alla lista delle spese
+  //Inizializzazione degli stati locali, per la specifica della spesa
   //category = stato per la cetegoria della spesa, inizialmente 'Food & Beverage'
   //setCategory = funzione per aggiornare lo stato category
   const [category, setCategory] = useState('Food & Beverage');
@@ -29,9 +30,9 @@ const ExpenseForm = ({ addExpense }) => { //Prende una funzione per aggiungere u
       alert('Please enter valid amount, date, and title');
       return;
     }
-    //chiama la funzione per aggiungere un nuovo oggetto
+    //altrimenti, chiama la funzione per aggiungere un nuovo oggetto, con i dati della nuova spesa
     addExpense({ category, title, amount: Number(amount), date });
-    //reimposta gli stati al valore iniziale
+    //una volta aggiunto, reimposta gli stati al valore iniziale
     setCategory('Food & Beverage');
     setTitle('');
     setAmount('');

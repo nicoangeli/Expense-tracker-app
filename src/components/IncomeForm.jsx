@@ -3,7 +3,7 @@ import React, { useState } from 'react'; //useState per gestire lo stato locale 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
-import './IncomeForm.css';
+import './IncomeForm.css'; //Import dello stile CSS del file
 
 //Componente ExpenseForm
 const IncomeForm = ({ addIncome }) => { //Prende una funzione per aggiungere una nuova spesa alla lista

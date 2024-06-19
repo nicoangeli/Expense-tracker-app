@@ -5,22 +5,24 @@ import { auth } from './firebase'; // Importa il modulo auth da firebase.js
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
-
+// Importa il file CSS per lo stile della pagina
 import './HomePage.css';
 
 const Homepage = () => {
+    // Stato per memorizzare l'email dell'utente, inizializzato con il valore dell'archivio locale o stringa vuota se non presente
     const [userEmail, setUserEmail] = useState(localStorage.getItem('userEmail') || ''); // Leggi l'email dall'archivio locale
     const [loading, setLoading] = useState(true); // Stato di caricamento
 
     const navigate = useNavigate();
 
+    // useEffect per il caricamento dei dati dell'utente
     useEffect(() => {
         const fetchUserData = async () => {
             const user = auth.currentUser;
             if (user) {
                 try {
                     await user.reload(); // Aggiorna i dati utente
-                    setUserEmail(user.email);
+                    setUserEmail(user.email); // Imposta l'email dell'utente nello stato
                     localStorage.setItem('userEmail', user.email); // Salva l'email nell'archivio locale
                 } catch (error) {
                     console.error('Error fetching user data:', error);
@@ -32,34 +34,37 @@ const Homepage = () => {
         fetchUserData();
     }, []);
 
-    // Funzione per il button Logout
+    // Funzione per gestire il click sul bottone Logout
     const handleClick = () => {
+        // Esegue il logout dell'utente utilizzando Firebase Auth
         signOut(auth).then(() => {
           console.log("User signed out");
-          navigate('/');
+          navigate('/'); // Naviga alla homepage dopo il logout
         }).catch((error) => {
           console.error("Error signing out: ", error);
         });
     };
 
+    // Funzioni per gestire i click sui bottoni delle diverse sezioni
+
     // Funzione per gestire il button Expenses
     const handleExpensesClick = () => {
-        navigate('/expenses');
+        navigate('/expenses'); // Naviga alla pagina delle spese
     }
 
     // Funzione per gestire il button Incomes
     const handleIncomesClick = () => {
-        navigate('/incomes');
+        navigate('/incomes'); // Naviga alla pagina delle entrate
     }
 
     // Funzione per gestire il button Budget
     const handleBudgetClick = () => {
-        navigate('/budget');
+        navigate('/budget'); // Naviga alla pagina del budget
     }
 
     // Funzione per gestire il button Budget
     const handlePromemoriaClick = () => {
-        navigate('/promemoria');
+        navigate('/promemoria'); // Naviga alla pagina deli promemoria
     }
 
     return (
@@ -70,6 +75,7 @@ const Homepage = () => {
             ) : (
                 <h2 id='homepage-subtitle'><FontAwesomeIcon icon={faUser} />User: {userEmail}</h2>
             )}
+            {/* Pulsanti per le diverse sezioni, con span per mettere il testo e l'icona dentro un bottone*/}
             <div className='container'>
                 {/*Button incomes*/}
                 <button className='button-home' onClick={handleIncomesClick}>

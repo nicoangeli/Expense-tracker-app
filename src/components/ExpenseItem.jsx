@@ -7,7 +7,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 //Componente ExpenseItem prende tre props:
 //indice elemento lista
 //l'oggetto spesa che contiene i dettagli della spesa
-//funzioner per eliminare la spesa dalla lista
+//funzione per eliminare la spesa dalla lista
 const ExpenseItem = ({ index, expense, deleteExpense }) => {
   //funzione che viene chiamata quando si clicca sul pulsante 'delete'
   const handleDelete = () => {
@@ -26,6 +26,7 @@ const ExpenseItem = ({ index, expense, deleteExpense }) => {
       <td>{expense.amount} $ </td>
       <td>{expense.date}</td>
       <td>
+        {/* buttone con il cestino per eliminare la spesa dalla lista */}
         <button className="delete-btn" onClick={handleDelete}>
           <FontAwesomeIcon icon={faTrashCan} />
         </button>
