@@ -22,7 +22,7 @@ Si possono impostare promemoria per ricordarsi le scadenza dei pagamenti, o semp
 1. Clona il repository oppure scaricare direttamente la cartella:
 
 ```
-git clone https://github.com/nicoangeli/expense-tracker-webapp.git
+git clone https://github.com/nicoangeli/Expense-tracker-app
 ```
 
 2. Installa le dipendenze:
