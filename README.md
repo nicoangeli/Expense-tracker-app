@@ -1,7 +1,7 @@
 # Expense Tracker WebApp
 
 L'Expense Tracker WebApp è una semplice applicazione web che ti aiuta a tenere traccia delle tue spese. Puoi aggiungere nuove voci di spesa, visualizzare il riepilogo delle tue spese e filtrare i risultati per data o per nome.
-Si possono impostare promemoria per ricordarsi le scadenza dei pagamenti, o semplicemente per ricordasi una spesa da fare.
+Si possono impostare promemoria per ricordarsi le scadenza dei pagamenti, o semplicemente per ricordasi una spesa.
 
 ## Caratteristiche
 
