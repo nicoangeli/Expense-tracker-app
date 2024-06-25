@@ -1,0 +1,43 @@
+#edit-button{
+    height: 38px;
+    width: 150px;
+    margin-left: 75px;
+    background-color: #0B7EF0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge l'ombra ai bottoni */
+}
+#edit-button:hover{
+    border: 1px solid green;
+    transform: scale(1.05);
+    background-color: rgb(28, 202, 83);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}
+
+#save-button{
+    height: 38px;
+    width: 150px;
+    margin-left: 10px;
+    background-color: #0B7EF0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge l'ombra ai bottoni */
+}
+#save-button:hover{
+    border: 1px solid green;
+    /* Per far venire in avanti il bottone Save quando si passa sopra, effetto visivo */
+    transform: scale(1.05); 
+    background-color: rgb(28, 202, 83);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}
+
+
+#home-button-budget{
+    height: 38px;
+    width: 150px;
+    margin-left: 75px;
+    background-color: #0B7EF0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge l'ombra ai bottoni */
+}
+#home-button-budget:hover{
+    border: 1px solid green;
+    transform: scale(1.05);
+    background-color: rgb(28, 202, 83);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}

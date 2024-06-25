@@ -1,0 +1,154 @@
+/* Importa il font 'Quicksand' da Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/* Applica stili generali a tutti gli elementi */
+* {
+  margin: 0; /* Rimuove i margini predefiniti */
+  padding: 0; /* Rimuove il padding predefinito */
+  box-sizing: border-box; /* Include padding e border nel calcolo della larghezza e altezza */
+  font-family: 'Quicksand', sans-serif; /* Imposta il font 'Quicksand' per tutti gli elementi */
+}
+
+/* Stili per il corpo della pagina */
+body {
+  display: flex; /* Usa flexbox per il layout */
+  justify-content: center; /* Centra il contenuto orizzontalmente */
+  align-items: center; /* Centra il contenuto verticalmente */
+  min-height: 100vh; /* Imposta un'altezza minima del 100% dell'altezza della viewport */
+  background: #f0f0f0; /* Imposta il colore di sfondo */
+  position: relative; /* Imposta la posizione relativa per l'elemento */
+}
+
+/* Stili per il contenitore principale dell'app */
+.App {
+  display: flex; /* Usa flexbox per il layout */
+  flex-direction: column; /* Dispone i figli in colonna */
+  align-items: center; /* Centra i figli orizzontalmente */
+  background: #fff; /* Imposta il colore di sfondo bianco */
+  padding: 20px; /* Aggiunge padding interno */
+  border-radius: 8px; /* Arrotonda gli angoli */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra leggera */
+  width: 100%; /* Imposta la larghezza al 100% */
+  justify-content: center; /* Centra i figli verticalmente */
+  position: absolute; /* Posiziona l'elemento assolutamente */
+  top: 50%; /* Sposta l'elemento al 50% dall'alto */
+  left: -85px; /* Sposta l'elemento a sinistra di 85px */
+}
+
+/* Stili per il contenitore dei pulsanti di registrazione/login */
+.container-register {
+  display: flex; /* Usa flexbox per il layout */
+  justify-content: center; /* Centra i figli orizzontalmente */
+  margin: 20px; /* Aggiunge margine intorno */
+  width: 250px; /* Imposta una larghezza fissa */
+}
+
+/* Stili per i div all'interno del contenitore di registrazione/login */
+.container-register div {
+  margin: 0 10px; /* Aggiunge margine orizzontale */
+  padding: 10px 20px; /* Aggiunge padding interno */
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+  border-radius: 4px; /* Arrotonda gli angoli */
+  transition: background-color 0.3s; /* Aggiunge una transizione per il colore di sfondo */
+}
+
+/* Stile per il div attivo */
+.activeColor {
+  background-color: rgb(0, 128, 0); /* Imposta il colore di sfondo */
+  color: #fff; /* Imposta il colore del testo */
+}
+
+/* Stile per il div inattivo */
+.pointer {
+  background-color: #ccc; /* Imposta il colore di sfondo */
+  color: #333; /* Imposta il colore del testo */
+}
+
+/* Stili per l'intestazione h1 */
+h1 {
+  margin-bottom: 20px; /* Aggiunge margine inferiore */
+}
+
+/* Stili per il form */
+form {
+  display: flex; /* Usa flexbox per il layout */
+  flex-direction: column; /* Dispone i figli in colonna */
+  align-items: center; /* Centra i figli orizzontalmente */
+  width: 100%; /* Imposta la larghezza al 100% */
+}
+
+/* Stili per gli input del form */
+form input {
+  width: 80%; /* Imposta la larghezza all'80% */
+  padding: 10px; /* Aggiunge padding interno */
+  margin-bottom: 10px; /* Aggiunge margine inferiore */
+  border: 1px solid #ccc; /* Imposta il bordo */
+  border-radius: 4px; /* Arrotonda gli angoli */
+}
+
+/* Stili per i bottoni del form */
+form button {
+  padding: 10px 20px; /* Aggiunge padding interno */
+  border: none; /* Rimuove il bordo */
+  border-radius: 4px; /* Arrotonda gli angoli */
+  background-color:  rgb(0, 128, 0); /* Imposta il colore di sfondo */
+  color: #fff; /* Imposta il colore del testo */
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+  transition: background-color 0.3s; /* Aggiunge una transizione per il colore di sfondo */
+}
+
+/* Stili per il bottone del form al passaggio del mouse */
+form button:hover {
+  background-color: rgb(0, 128, 0); /* Cambia il colore di sfondo */
+}
+
+/* Stili per i bottoni generali */
+button {
+  margin-top: 10px; /* Aggiunge margine superiore */
+  padding: 10px 20px; /* Aggiunge padding interno */
+  border: none; /* Rimuove il bordo */
+  border-radius: 4px; /* Arrotonda gli angoli */
+  background-color: #4285f4; /* Imposta il colore di sfondo */
+  color: #fff; /* Imposta il colore del testo */
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+  transition: background-color 0.3s; /* Aggiunge una transizione per il colore di sfondo */
+}
+
+/* Stili per il bottone Google */
+#button-google{
+  background-color: #357ae8; /* Cambia il colore di sfondo */
+}
+
+/* Stili per i bottoni generali al passaggio del mouse */
+button:hover {
+  background-color: #357ae8; /* Cambia il colore di sfondo */
+}
+
+/* Stili per il paragrafo al passaggio del mouse */
+p:hover {
+  color: blueviolet; /* Cambia il colore del testo */
+  text-decoration: underline; /* Aggiunge la sottolineatura */
+  cursor: pointer; /* Cambia il cursore */
+}
+
+/* Stili per il contenitore della password */
+.password-container {
+  position: relative; /* Imposta la posizione relativa */
+  width: 100%; /* Imposta la larghezza al 100% */
+}
+
+/* Stili per l'input della password all'interno del contenitore */
+.password-container input {
+  margin-left: 56px; /* Aggiunge margine a sinistra */
+}
+
+/* Stili per l'icona della password */
+.password-icon {
+  position: absolute; /* Posiziona l'elemento assolutamente */
+  right: 10px; /* Sposta l'elemento a destra di 10px */
+  top: 50%; /* Sposta l'elemento al 50% dall'alto */
+  transform: translateY(-50%); /* Centra verticalmente l'elemento */
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+  margin-right: 50px; /* Aggiunge margine a destra */
+  margin-top: -5px; /* Aggiunge margine superiore negativo */
+}

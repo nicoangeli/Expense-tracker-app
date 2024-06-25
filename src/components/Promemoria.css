@@ -1,0 +1,154 @@
+.promemoria-container {
+  border-radius: 17px; /* Bordi arrotondati */
+  border: 2px solid green; /* Bordo solido di colore verde di 2px */
+  padding: 20px; /* Spazio di riempimento interno di 20px */
+}
+
+#crea-button {
+  height: 38px; /* Altezza del bottone */
+  width: 120px; /* Larghezza del bottone */
+  margin-left: 20px; /* Margine sinistro di 20px */
+  margin-bottom: 30px; /* Margine inferiore di 30px */
+  background-color: #0B7EF0; /* Colore di sfondo del bottone */
+  border: 1px solid #0B7EF0; /* Bordo sottile del bottone */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra del bottone */
+}
+
+#crea-button:hover {
+  border: 1px solid green; /* Cambia il bordo al passaggio del mouse */
+  transform: scale(1.05); /* Effetto di ingrandimento al passaggio del mouse */
+  background-color: rgb(28, 202, 83); /* Cambia colore di sfondo al passaggio del mouse */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}
+
+#imposta-button {
+  height: 40px; /* Altezza del bottone */
+  width: 200px; /* Larghezza del bottone */
+  margin-left: 10px; /* Margine sinistro di 10px */
+  background-color: #0B7EF0; /* Colore di sfondo del bottone */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra del bottone */
+}
+
+#imposta-button:hover {
+  border: 1px solid green; /* Cambia il bordo al passaggio del mouse */
+  transform: scale(1.05); /* Effetto di ingrandimento al passaggio del mouse */
+  background-color: rgb(28, 202, 83); /* Cambia colore di sfondo al passaggio del mouse */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+  font-size: 15px; /* Cambia dimensione del testo al passaggio del mouse */
+}
+
+#home-button {
+  height: 38px; /* Altezza del bottone */
+  width: 150px; /* Larghezza del bottone */
+  margin-top: 30px; /* Margine superiore di 30px */
+  margin-left: 165px; /* Margine sinistro di 165px */
+  background-color: #0B7EF0; /* Colore di sfondo del bottone */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra del bottone */
+}
+
+#home-button:hover {
+  border: 1px solid green; /* Cambia il bordo al passaggio del mouse */
+  transform: scale(1.05); /* Effetto di ingrandimento al passaggio del mouse */
+  background-color: rgb(28, 202, 83); /* Cambia colore di sfondo al passaggio del mouse */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}
+
+#delete-button {
+  height: 38px; /* Altezza del bottone */
+  width: 100px; /* Larghezza del bottone */
+  margin-left: 20px; /* Margine sinistro di 20px */
+  background-color: #0B7EF0; /* Colore di sfondo del bottone */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra del bottone */
+}
+
+#delete-button:hover {
+  border: 1px solid green; /* Cambia il bordo al passaggio del mouse */
+  background-color: rgb(28, 202, 83); /* Cambia colore di sfondo al passaggio del mouse */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}
+
+#check-button {
+  height: 35px; /* Altezza del bottone */
+  margin-left: 2px; /* Margine sinistro di 2px */
+  margin-right: 10px; /* Margine destro di 10px */
+  margin-bottom: 20px; /* Margine inferiore di 20px */
+  background-color: #0B7EF0; /* Colore di sfondo del bottone */
+  border: 1px solid #0B7EF0; /* Bordo sottile del bottone */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra del bottone */
+}
+
+#check-button:hover {
+  border: 1px solid green; /* Cambia il bordo al passaggio del mouse */
+  transform: scale(1.05); /* Effetto di ingrandimento al passaggio del mouse */
+  background-color: rgb(28, 202, 83); /* Cambia colore di sfondo al passaggio del mouse */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia l'ombra al passaggio del mouse */
+}
+
+.checkbox-container {
+  display: inline-block; /* Mostra come blocco inline */
+  position: relative; /* Posizione relativa */
+  padding-left: 30px; /* Spazio di riempimento a sinistra di 30px */
+  margin-bottom: 20px; /* Margine inferiore di 20px */
+  margin-right: 20px; /* Margine destro di 20px */
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+  font-size: 12px; /* Dimensione del carattere */
+  user-select: none; /* Non selezionabile dall'utente */
+}
+
+.custom-checkbox {
+  position: absolute; /* Posizione assoluta */
+  opacity: 0; /* Opacità a 0 (nascosto) */
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+  height: 0; /* Altezza a 0 */
+  width: 0; /* Larghezza a 0 */
+}
+
+.checkmark {
+  position: absolute; /* Posizione assoluta */
+  top: 0; /* Allineamento in alto a 0 */
+  left: 0; /* Allineamento a sinistra a 0 */
+  height: 25px; /* Altezza del marcatore */
+  width: 25px; /* Larghezza del marcatore */
+  background-color: #eee; /* Colore di sfondo del marcatore */
+  border-radius: 4px; /* Bordi arrotondati */
+  transition: background-color 0.3s; /* Transizione per il cambiamento del colore di sfondo */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombra del marcatore */
+}
+
+.checkmark:after {
+  content: ""; /* Contenuto vuoto */
+  position: absolute; /* Posizione assoluta */
+  display: none; /* Non visibile di default */
+  left: 9px; /* Allineamento a sinistra a 9px */
+  top: 5px; /* Allineamento in alto a 5px */
+  width: 5px; /* Larghezza di 5px */
+  height: 10px; /* Altezza di 10px */
+  border: solid white; /* Bordo solido bianco */
+  border-width: 0 3px 3px 0; /* Dimensione del bordo */
+  transform: rotate(45deg); /* Ruota di 45 gradi */
+}
+
+.custom-checkbox:checked ~ .checkmark {
+  background-color: #2196F3; /* Cambia colore di sfondo del marcatore quando è selezionato */
+  box-shadow: 0 3px 7px rgba(33, 150, 243, 0.3); /* Cambia l'ombra del marcatore quando è selezionato */
+}
+
+.custom-checkbox:checked ~ .checkmark:after {
+  display: block; /* Mostra il segno di spunta quando è selezionato */
+}
+  
+@keyframes checkAnim {
+  0% {
+      height: 0; /* Al frame iniziale (0%), l'altezza del segno di spunta è 0 */
+  }
+
+  100% {
+      height: 10px; /* Al frame finale (100%), l'altezza del segno di spunta è 10px */
+  }
+}
+
+  
+  .custom-checkbox:checked ~ .checkmark:after {
+    animation: checkAnim 0.2s forwards;
+  }
+  

@@ -1,0 +1,23 @@
+{
+  "name": "Expense Tracker App",
+  "short_name": "ETA",
+  "description": "I am a simple Expense Tracker App",
+  "icons": [
+    {
+      "src": "/src/assets/dollar.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/src/assets/dollar1.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#171717",
+  "background_color": "#f0e7db",
+  "orientation": "portrait"
+}
